@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Leads Potential Prediction</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1>Leads Potential Prediction</h1>
+    <form method="POST" action="/predict">
+
+        <label for="Product_ID">Product_ID:</label>
+        <input type="text" id="Product_ID" name="Product_ID">
+
+        <label for="Source">Source:</label>
+        <input type="text" id="Source" name="Source">
+
+        <label for="Sales_Agent">Sales_Agent:</label>
+        <input type="text" id="Sales_Agent" name="Sales_Agent">
+
+        <label for="Location">Location:</label>
+        <input type="text" id="Location" name="Location">
+
+        <label for="Delivery_Mode">Delivery_Mode:</label>
+        <input type="text" id="Delivery_Mode" name="Delivery_Mode">
+
+        <input type="submit" value="Predict">
+    </form>
+    {% if prediction is defined %}
+        {% if prediction == 1 %}
+            <p>Leads Potential: Low Potential</p>
+        {% elif prediction == 0 %}
+            <p>Leads Potential: High Potential</p>
+        {% endif %}
+    {% endif %}
+    {% if error %}
+        <p class="error">Error: {{ error }}</p>
+    {% endif %}
+</body>
+</html>
